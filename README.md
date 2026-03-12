@@ -1,7 +1,9 @@
-<img src="images/lambda.png" alt="Lambda logo" height="100" >
+<img src="ressources/lambda.png" alt="Lambda logo" height="100" >
 
-Lambda is an experimental OS for NumWorks calculators.
-The OS is not finished but can be used as well.
+Lambda is an experimental userland for NumWorks calculators.
+The userland is not finished but can be used as well.
+
+<img src="ressources/example_os.gif" width=320 alt="Example userland">
 
 ## Functionalities
 
@@ -41,14 +43,14 @@ The app `OFF` is useful when you use the clock because it can run during a real 
 ### Lambda App
 It's the app to change all settings of Lambda OS. You can access it quickly by pressing the toolbox button on the home app.
 
-You can reset the clock or activate/deactivate the clock.
+You can reset the clock or activate/ deactivate the clock.
 You can also switch theme :
 
 - Lambda classic
 - Lambda 2
 - Town (with the animated background)
 - Epsilon classic
-- Dynamic profile
+- [Dynamic profil](#dynamic-profile)
 - Change the form of icons (circle/square)
 
 ## Dynamic Profile
@@ -65,7 +67,7 @@ You can load a dynamic profile with this [website](https://100sp4rk100.github.io
 - If you don't use `Dynamic colors on images` you have to specify a profile for the icons : `Epsilon profile` or `Lambda profile`
 - You can download and load a profile to save it
 
-After upload on the calculator you need to refresh it manually in Lambda app.
+After upload on the calculator you need to refresh it manually in [Lambda App](#lambda-app).
 
 ## Shortcut
 It's only on the home app :
@@ -75,29 +77,32 @@ It's only on the home app :
 ## Python
 With the `time` module you can change, get and reset the time.
 All functions are available in the toolbox.
+To see the syntax go [here](#set-the-clock)
 
 ## All backgrounds
 To use it in a `dynamic profile` you have to put the number of the background. It works with integrated backgrounds and all the backgrounds you add.
 
 - 1
-<img src="images/lambda_classic.png" alt="Lambda classic">
+<img src="ressources/lambda_classic.png" alt="Lambda classic">
 
 - 2
-<img src="images/lambda_2.png" alt="Lambda 2">
+<img src="ressources/lambda_2.png" alt="Lambda 2">
 
 - 3
-<img src="images/town.png" alt="Town">
+<img src="ressources/town.png" alt="Town">
 
 - 4
-<img src="images/blossom.png" alt="Blossom">
+<img src="ressources/blossom.png" alt="Blossom">
 
 - 5
 It's an image adding in forlder `apps/theme_gestion/customs_backgrounds`.
-<img src="images/example.png" alt="Blossom">
+<img src="ressources/example.png" alt="Blossom">
 
 ## Adding background
 You can add a background by yourself by adding your image in PNG format in the folder `apps/theme_gestion/customs_backgrounds`.
-And you have to compile the OS again.
+And you have to compile the userland again.
+To use the background you have to create a [dynamic profil](#dynamic-profile).
+To know the number of your background you have to do : `postion in the folder` + 4. For example `apps/theme_gestion/customs_backgrounds/example.png` is in first position so we need to do : `1+4=5`. So to use the example background you need to enter 5 in [lambda theme maker](https://100sp4rk100.github.io/Lambda-Theme-Maker-WebSite/).
 
 ## How to compile it
 To compile it clone the repository and run :

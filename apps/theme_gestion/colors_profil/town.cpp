@@ -115,7 +115,7 @@ KDColor TownColorProfil::getColor(const char* name) const{
     }else if (strcmp(name, "TextHillightColor") == 0) {
         return KDColorWhite;
     }else if (strcmp(name, "TextColor") == 0) {
-        return KDColor::RGB24(0x5d6cb1);
+        return KDColor::RGB24(0xb4beed);
     }else if (strcmp(name, "BackgroundColor") == 0) {
         return KDColorWhite;
     }else if (strcmp(name, "BackgroundColorHilight") == 0) {
