@@ -1,0 +1,49 @@
+name: Build Lambda-OS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential git imagemagick \
+            libx11-dev libxext-dev libfreetype6-dev libpng-dev \
+            gcc-arm-none-eabi binutils-arm-none-eabi python3
+
+      - name: Clone Epsilon v23
+        run: |
+          git clone https://github.com/numworks/epsilon.git
+          cd epsilon
+          git checkout version-23
+
+      - name: Download and apply Lambda-OS patch
+        run: |
+          cd epsilon
+          curl -L https://raw.githubusercontent.com/100Sp4rk100/Lambda-OS/master/ressources/epsilon-v23.patch -o epsilon-v23.patch
+          git apply epsilon-v23.patch
+
+      - name: Build
+        run: |
+          cd epsilon
+          make clean
+          make MODEL=n0110 userland.B.dfu
+
+      - name: Extract external.bin from dfu
+        run: |
+          cd epsilon
+          python3 build/device/dfu.py \
+            --export output/release/device/n0110/userland/userland.B.dfu \
+            output/release/device/n0110/userland/userland.B.bin || \
+          dd if=output/release/device/n0110/userland/userland.B.dfu \
+             of=output/release/device/n0110/userland/external.bin \
+             bs=1 skip=11
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: lambda-os-n0110
+          path: epsilon/output/release/device/n0110/userland/
