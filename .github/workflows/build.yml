@@ -12,7 +12,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential git imagemagick \
             libx11-dev libxext-dev libfreetype6-dev libpng-dev \
-            gcc-arm-none-eabi binutils-arm-none-eabi python3
+            gcc-arm-none-eabi binutils-arm-none-eabi python3 python3-pip
+
+      - name: Install Python modules
+        run: pip install lz4 Pillow --break-system-packages
 
       - name: Clone Epsilon v23
         run: |
@@ -31,16 +34,6 @@ jobs:
           cd epsilon
           make clean
           make MODEL=n0110 userland.B.dfu
-
-      - name: Extract external.bin from dfu
-        run: |
-          cd epsilon
-          python3 build/device/dfu.py \
-            --export output/release/device/n0110/userland/userland.B.dfu \
-            output/release/device/n0110/userland/userland.B.bin || \
-          dd if=output/release/device/n0110/userland/userland.B.dfu \
-             of=output/release/device/n0110/userland/external.bin \
-             bs=1 skip=11
 
       - name: Upload
         uses: actions/upload-artifact@v4
